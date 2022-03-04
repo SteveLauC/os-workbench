@@ -50,6 +50,7 @@ options get_options(int ac, char *av[]) {
                 break;
         }
     }
+    return opt;
 }
 int main(int ac, char *av[]) {
     options opt = get_options(ac, av);
