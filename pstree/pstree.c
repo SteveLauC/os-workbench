@@ -131,10 +131,10 @@ void get_process(processes * p) {
         }
         printf("debug: stat = %s\n", buf);
 
-        char delimiter = ' ';
-        char * token = strtok(buf, &delimiter);
+        char * delimiter = " ";
+        char * token = strtok(buf, delimiter);
         for (int i = 0; i < 3; i++) {
-            token = strtok(NULL, &delimiter);
+            token = strtok(NULL, delimiter);
             printf("debug: token = %s\n", token);
             if (0==i){
                 strncpy(p->p_array[p->p_num].cmd, token, strlen(token));
