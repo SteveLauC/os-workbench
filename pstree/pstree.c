@@ -91,7 +91,7 @@ void get_process(processes * p) {
     p->p_num = 0;
     for (int i = 0; i < MAX_PROC; i++) {
         strncpy(p->p_array[i].cmd, "#", 2);
-        p->p_array[i].pid = 0;
+        p->p_array[i].pid = -1;
         p->p_array[i].parent_index = -1;
     }
 
@@ -108,7 +108,6 @@ void get_process(processes * p) {
             continue;
         if (isalpha(dirent_ptr->d_name[0]))
             continue;
-        // printf("debug readding dir\n");
 
         // set the pid field
         p->p_array[p->p_num].pid = atoi(dirent_ptr->d_name);
