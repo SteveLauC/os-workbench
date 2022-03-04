@@ -86,20 +86,23 @@ void show_process(processes * p) {
 }
 
 void parse_stat(const char * contents, processes * p) {
-    char * p;
+    char * c;
     int count = 0;
     int sign = 0;
-    for(p=contents; count < 3; p++) {
-        if ('(' == *p) {
+    for(c=contents; count < 3; c++) {
+        if ('(' == *c) {
             sign = 1;
         }
-        if (')' == *p) {
+        if (')' == *c) {
             sign = 0;
         }
 
-        if (0==sign && ' ' == *p)
-            *p = '%';
+        if (0==sign && ' ' == *c) {
+            *c = '%';
+            count += 1;
+        }
     }
+    printf("debug: stat = %s\n", contents);
 }
 
 /*
