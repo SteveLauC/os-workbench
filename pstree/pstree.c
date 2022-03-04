@@ -131,6 +131,7 @@ void get_process(processes * p) {
             exit(EXIT_FAILURE);
         }
 
+        printf("debug: 1\n");
         char delimiter = ' ';
         char * token = strtok(buf, &delimiter);
         for (int i = 0; i < 3; i++) {
@@ -143,6 +144,8 @@ void get_process(processes * p) {
             }
         }
 
+
+        printf("debug: before fclose function\n");
         fclose(fp);
         free(buf); 
         p->p_num += 1; 
