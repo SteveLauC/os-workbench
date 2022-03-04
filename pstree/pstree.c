@@ -103,6 +103,8 @@ void parse_stat(char * contents, processes * p) {
         }
     }
 
+    printf("debug: stat = %s\n", contents);
+
     // parse the contents of stat file
     char * delimiter = "%";
     char * token = strtok(contents, delimiter);
@@ -115,7 +117,6 @@ void parse_stat(char * contents, processes * p) {
             p->p_array[p->p_num].ppid = atoi(token);
         }
     }
-    printf("debug: stat = %s\n", contents);
 }
 
 /*
