@@ -106,9 +106,9 @@ void get_process(processes * p) {
         // skip the hidden and system-wide info files 
         if (0==strncmp(dirent_ptr->d_name, ".", 1))
             continue;
-        if (isascii(dirent_ptr->d_name[0]))
+        if (isalpha(dirent_ptr->d_name[0]))
             continue;
-        printf("debug readding dir\n");
+        // printf("debug readding dir\n");
 
         // set the pid field
         p->p_array[p->p_num].pid = atoi(dirent_ptr->d_name);
@@ -144,13 +144,10 @@ void get_process(processes * p) {
         }
 
 
-        printf("debug: before fclose function\n");
         fclose(fp);
         free(buf); 
         p->p_num += 1; 
-        printf("debug: inside the get_processes, p_num: %d\n", p->p_num);
     } 
-    printf("debug exit the while loop\n");
     closedir(dir_ptr);
 }
 
