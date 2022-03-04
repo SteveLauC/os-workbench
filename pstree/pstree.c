@@ -129,6 +129,7 @@ void get_process(processes * p) {
             perror(NULL);
             exit(EXIT_FAILURE);
         }
+        printf("debug: stat = %s\n", buf);
 
         char delimiter = ' ';
         char * token = strtok(buf, &delimiter);
