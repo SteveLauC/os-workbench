@@ -103,6 +103,7 @@ void get_process(processes * p) {
         perror(NULL);
     }
     while (NULL != (dirent_ptr=readdir(dir_ptr))) {
+        printf("debug readding dir\n");
         // skip the hidden and system-wide info files 
         if (0==strncmp(dirent_ptr->d_name, ".", 1))
             continue;
