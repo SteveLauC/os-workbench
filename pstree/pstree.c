@@ -78,7 +78,7 @@ typedef struct {
 
 void show_process(processes * p) {
     for (int i = 0; i < p->p_num; i++ ) {
-        printf("cmd: %s\npid: %d\nppid: %d\nparent_index: %d\n", p->p_array[i].cmd, p->p_array[i].pid, p->p_array[i].ppid, p->p_array[i].parent_index);
+        printf("cmd: %s\npid: %d\nppid: %d\nparent_index: %d\n\n", p->p_array[i].cmd, p->p_array[i].pid, p->p_array[i].ppid, p->p_array[i].parent_index);
     }
 }
 
