@@ -137,6 +137,7 @@ void get_process(processes * p) {
             token = strtok(NULL, &delimiter);
             if (0==i){
                 strncpy(p->p_array[p->p_num].cmd, token, strlen(token));
+                printf("debug: cmd = %s, len = %d\n", p->p_array[p->p_num].cmd, strlne(p->p_array[p->p_num].cmd));
             }
             if (2==i) {
                 p->p_array[p->p_num].ppid = atoi(token);
