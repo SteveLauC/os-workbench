@@ -151,12 +151,26 @@ void get_process(processes * p) {
     closedir(dir_ptr);
 }
 
+void set_parent_index(processes * p) {
+    for(int i = 0; i < p->p_num; i++) {
+        if (0==p->p_array[i].ppid) 
+            continue;
+        for(int j = 0; j < p->p_num;j++) {
+            if (p->p_array[i].ppid = p->p_array[j].pid) {
+                p->p_array[i].parent_index = j;
+                break;
+            }
+        }
+    }
+}
+
 int main(int ac, char *av[]) {
     // options opt = get_options(ac, av);
     
     // show_options(&opt);
     processes * p = (processes*)malloc(sizeof(processes));
     get_process(p);
+    set_parent_index(p);
     show_process(p);
 
     free(p);
