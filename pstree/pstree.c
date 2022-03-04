@@ -85,7 +85,7 @@ void show_process(processes * p) {
     }
 }
 
-void parse_stat(const char * contents, processes * p) {
+void parse_stat(char * contents, processes * p) {
     char * c;
     int count = 0;
     int sign = 0;
