@@ -98,11 +98,14 @@ void get_process(processes * p) {
     DIR * dir_ptr = NULL;
     struct dirent * dirent_ptr = NULL;
 
+    // open the `/proc` directory
     if (NULL==(dir_ptr = opendir("/proc"))) {
         fprintf(stderr, "Cannot read from /proc directory\n");
         perror(NULL);
     }
+    // read the entries in the directory
     while (NULL != (dirent_ptr=readdir(dir_ptr))) {
+
         // skip the hidden and system-wide info files 
         if (0==strncmp(dirent_ptr->d_name, ".", 1))
             continue;
@@ -112,15 +115,17 @@ void get_process(processes * p) {
         // set the pid field
         p->p_array[p->p_num].pid = atoi(dirent_ptr->d_name);
 
-        // set cmd and ppid fields
+        // get the stat file path ready
         char stat[276];
         sprintf(stat, "/proc/%s/stat", dirent_ptr->d_name);
         FILE * fp = NULL;
-        if (NULL==(fp=fopen(stat, "r"))) {
+        if (NULL==(fp=fopen(stat, "r"))) { // open it
             fprintf(stderr, "Cannot open file %s\n", stat);
             perror(NULL);
             exit(EXIT_FAILURE);
         }
+        
+        // read the contents of stat into a string
         // don't forget to deallocate the memery pointed by buf
         char * buf = NULL;
         size_t len = 0;
@@ -129,16 +134,14 @@ void get_process(processes * p) {
             perror(NULL);
             exit(EXIT_FAILURE);
         }
-        // printf("debug: stat = %s\n", buf);
 
+        // parse the contents of stat file
         char * delimiter = " ";
         char * token = strtok(buf, delimiter);
         for (int i = 0; i < 3; i++) {
             token = strtok(NULL, delimiter);
-            // printf("debug: token = %s\n", token);
             if (0==i){
                 strncpy(p->p_array[p->p_num].cmd, token, strlen(token));
-                // printf("debug: cmd = %s, len = %zu, token = %s, token_len = %zu\n", p->p_array[p->p_num].cmd, strlen(p->p_array[p->p_num].cmd), token, strlen(token)  );
             }
             if (2==i) {
                 p->p_array[p->p_num].ppid = atoi(token);
@@ -146,17 +149,20 @@ void get_process(processes * p) {
         }
 
 
-        fclose(fp);
-        free(buf);  // free the memory
+        // some assertions
         assert(strlen(p->p_array[p->p_num].cmd) >=2);
         assert(p->p_array[p->p_num].pid >= 0);
         assert(p->p_array[p->p_num].ppid >= 0);
+
+        fclose(fp); // close the file
+        free(buf);  // free the memory
         p->p_num += 1; 
     } 
     closedir(dir_ptr);
 }
 
-void set_parent_index(processes * p) {
+// set the index of the parent process
+void set_parent_process_index(processes * p) {
     for(int i = 0; i < p->p_num; i++) {
         if (0==p->p_array[i].ppid) 
             continue;
@@ -175,7 +181,7 @@ int main(int ac, char *av[]) {
     // show_options(&opt);
     processes * p = (processes*)malloc(sizeof(processes));
     get_process(p);
-    set_parent_index(p);
+    set_parent_process_index(p);
     show_process(p);
 
     free(p);
