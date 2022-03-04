@@ -152,7 +152,7 @@ void get_process(processes * p) {
         //     }
         // }
         char state; // useless
-        sscanf(buf, "%d %s %c %d", &p->p_array[p->p_num].pid, &p->p_array[p->p_num].cmd, &state, &p->p_array[p->p_num].ppid);
+        sscanf(buf, "%d %s %c %d", &p->p_array[p->p_num].pid, p->p_array[p->p_num].cmd, &state, &p->p_array[p->p_num].ppid);
 
 
         // some assertions
