@@ -10,6 +10,11 @@ typedef struct {
 }options;
 
 options get_options(int ac, char *av[]) {
+    options opt = options{
+        0,
+        0,
+        0,
+    };
     int option = -1;
 
     const char * short_option = ":pnv";
@@ -23,14 +28,15 @@ options get_options(int ac, char *av[]) {
     while (-1 != (option = getopt_long(ac, av, short_option, &long_opton[0], NULL))) {
         switch (option){
             case 'p':
+
                 break;
-            case 'p':
+            case 'n':
                 break;
-            case 'p':
+            case 'v':
                 break;
-            case 'p':
+            case ':':
                 break;
-            case 'p':
+            case '?':
                 break;
         }
     }
