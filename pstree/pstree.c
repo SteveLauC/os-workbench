@@ -21,7 +21,7 @@ options get_options(int ac, char *av[]) {
     };
 
     while (-1 != (option = getopt_long(ac, av, short_option, &long_opton[0], NULL))) {
-        switch option{
+        switch (option){
             case 'p':
                 break;
             case 'p':
