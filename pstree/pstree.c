@@ -156,9 +156,9 @@ void get_process(processes * p) {
 
 
         // some assertions
-        assert(strlen(p->p_array[p->p_num].cmd) >=2);
-        assert(p->p_array[p->p_num].pid >= 0);
-        assert(p->p_array[p->p_num].ppid >= 0);
+        // assert(strlen(p->p_array[p->p_num].cmd) >=2);
+        // assert(p->p_array[p->p_num].pid >= 0);
+        // assert(p->p_array[p->p_num].ppid >= 0);
 
         fclose(fp); // close the file
         free(buf);  // free the memory
