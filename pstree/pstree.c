@@ -113,7 +113,7 @@ void get_process(processes * p) {
         p->p_array[p->p_num].pid = atoi(dirent_ptr->d_name);
 
         // set cmd and ppid fields
-        char stat[266];
+        char stat[276];
         sprintf(stat, "/proc/%s/stat", dirent_ptr->d_name);
         FILE * fp = NULL;
         if (NULL==(fp=fopen(stat, "r"))) {
