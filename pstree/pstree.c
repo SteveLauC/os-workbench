@@ -143,7 +143,11 @@ void get_process(processes * p) {
         }
 
         fclose(fp);
-        free(buf); p->p_num += 1; } closedir(dir_ptr);
+        free(buf); 
+        p->p_num += 1; 
+        printf("debug: inside the get_processes, p_num: %d\n", p->p_num);
+    } 
+    closedir(dir_ptr);
 }
 
 int main(int ac, char *av[]) {
