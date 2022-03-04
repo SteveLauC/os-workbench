@@ -145,6 +145,9 @@ void get_process(processes * p) {
 
         fclose(fp);
         free(buf);  // free the memory
+        assert(strlen(p->p_array[p->p_num].cmd) >=2);
+        assert(p->p_array[p->p_num].pid >= 0);
+        assert(p->p_array[p->p_num].ppid >= 0);
         p->p_num += 1; 
     } 
     closedir(dir_ptr);
