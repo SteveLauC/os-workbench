@@ -103,12 +103,12 @@ void get_process(processes * p) {
         perror(NULL);
     }
     while (NULL != (dirent_ptr=readdir(dir_ptr))) {
-        printf("debug readding dir\n");
         // skip the hidden and system-wide info files 
         if (0==strncmp(dirent_ptr->d_name, ".", 1))
             continue;
         if (isascii(dirent_ptr->d_name[0]))
             continue;
+        printf("debug readding dir\n");
 
         // set the pid field
         p->p_array[p->p_num].pid = atoi(dirent_ptr->d_name);
@@ -131,7 +131,6 @@ void get_process(processes * p) {
             exit(EXIT_FAILURE);
         }
 
-        printf("debug: 1\n");
         char delimiter = ' ';
         char * token = strtok(buf, &delimiter);
         for (int i = 0; i < 3; i++) {
