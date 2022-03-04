@@ -156,7 +156,7 @@ void set_parent_index(processes * p) {
         if (0==p->p_array[i].ppid) 
             continue;
         for(int j = 0; j < p->p_num;j++) {
-            if (p->p_array[i].ppid = p->p_array[j].pid) {
+            if (p->p_array[i].ppid == p->p_array[j].pid) {
                 p->p_array[i].parent_index = j;
                 break;
             }
