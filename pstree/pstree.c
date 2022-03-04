@@ -140,17 +140,19 @@ void get_process(processes * p) {
         }
 
         // parse the contents of stat file
-        char * delimiter = " ";
-        char * token = strtok(buf, delimiter);
-        for (int i = 0; i < 3; i++) {
-            token = strtok(NULL, delimiter);
-            if (0==i){
-                strncpy(p->p_array[p->p_num].cmd, token, strlen(token));
-            }
-            if (2==i) {
-                p->p_array[p->p_num].ppid = atoi(token);
-            }
-        }
+        // char * delimiter = " ";
+        // char * token = strtok(buf, delimiter);
+        // for (int i = 0; i < 3; i++) {
+        //     token = strtok(NULL, delimiter);
+        //     if (0==i){
+        //         strncpy(p->p_array[p->p_num].cmd, token, strlen(token));
+        //     }
+        //     if (2==i) {
+        //         p->p_array[p->p_num].ppid = atoi(token);
+        //     }
+        // }
+        char state; // useless
+        sscanf(buf, "%d %s %c %d", &p->p_array[p->p_num].pid, &p->p_array[p->p_num].cmd, &state, &p->p_array[p->p_num].ppid);
 
 
         // some assertions
