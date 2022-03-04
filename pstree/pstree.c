@@ -157,6 +157,6 @@ int main(int ac, char *av[]) {
     get_process(p);
     show_process(p);
 
-
+    printf("debug\n");
     return 0;
 }
