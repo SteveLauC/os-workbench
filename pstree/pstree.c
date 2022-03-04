@@ -85,6 +85,23 @@ void show_process(processes * p) {
     }
 }
 
+void parse_stat(const char * contents, processes * p) {
+    char * p;
+    int count = 0;
+    int sign = 0;
+    for(p=contents; count < 3; p++) {
+        if ('(' == *p) {
+            sign = 1;
+        }
+        if (')' == *p) {
+            sign = 0;
+        }
+
+        if (0==sign && ' ' == *p)
+            *p = '%';
+    }
+}
+
 /*
   read subdirectories of `/proc` and file `/proc[pid]/stat` to get the processes info
   format of `/proc/[pid]/stat`: pid comm state ppid ... (other irrelevant fields are omitted)
@@ -151,8 +168,8 @@ void get_process(processes * p) {
         //         p->p_array[p->p_num].ppid = atoi(token);
         //     }
         // }
-        char state; // useless
-        sscanf(buf, "%d %s %c %d", &p->p_array[p->p_num].pid, p->p_array[p->p_num].cmd, &state, &p->p_array[p->p_num].ppid);
+        // char state; // useless
+        // sscanf(buf, "%d %s %c %d", &p->p_array[p->p_num].pid, p->p_array[p->p_num].cmd, &state, &p->p_array[p->p_num].ppid);
 
 
         // some assertions
