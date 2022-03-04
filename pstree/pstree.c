@@ -143,10 +143,7 @@ void get_process(processes * p) {
         }
 
         fclose(fp);
-        free(buf);
-        p->p_num += 1;
-    }
-    closedir(dir_ptr);
+        free(buf); p->p_num += 1; } closedir(dir_ptr);
 }
 
 int main(int ac, char *av[]) {
@@ -155,6 +152,7 @@ int main(int ac, char *av[]) {
     // show_options(&opt);
     processes * p = (processes*)malloc(sizeof(processes));
     get_process(p);
+    printf("debug: the num of process %d\n", p->p_num);
     show_process(p);
 
     printf("debug\n");
