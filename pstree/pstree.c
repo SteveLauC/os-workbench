@@ -77,12 +77,15 @@ typedef struct {
   format of `/proc/[pid]/stat`: pid comm state ppid ... (other irrelevant fields are omitted)
 */
 int get_process(processes * p) {
-
+    // initialization
+    for (int i = 0; i < MAX_PROC; i++) {
+        p->p_array[i].cmd = "#";
+    }
 }
 
 int main(int ac, char *av[]) {
     options opt = get_options(ac, av);
-    show_options(&opt);
+    // show_options(&opt);
 
     return 0;
 }
