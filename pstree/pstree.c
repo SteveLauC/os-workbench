@@ -64,7 +64,7 @@ options get_options(int ac, char *av[]) {
 
 // definition of the process
 typedef struct {
-    char * cmd[256];
+    char cmd[256];
     pid_t pid;
     pid_t ppid;
     int parent_index;
