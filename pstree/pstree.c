@@ -103,7 +103,7 @@ void parse_stat(char * contents, processes * p) {
         }
     }
 
-    printf("debug: stat = %s\n", contents);
+    // printf("debug: stat = %s\n", contents);
 
     // parse the contents of stat file
     char * delimiter = "%";
