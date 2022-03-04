@@ -150,6 +150,7 @@ void get_process(processes * p) {
         p->p_num += 1; 
         printf("debug: inside the get_processes, p_num: %d\n", p->p_num);
     } 
+    printf("debug exit the while loop\n");
     closedir(dir_ptr);
 }
 
