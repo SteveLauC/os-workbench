@@ -145,7 +145,7 @@ void get_process(processes * p) {
 
 
         fclose(fp);
-        free(buf); 
+        free(buf);  // free the memory
         p->p_num += 1; 
     } 
     closedir(dir_ptr);
