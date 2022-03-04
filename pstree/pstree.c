@@ -10,7 +10,7 @@ typedef struct {
 }options;
 
 options get_options(int ac, char *av[]) {
-    options opt = options{
+    options opt = {
         0,
         0,
         0,
