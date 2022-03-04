@@ -124,7 +124,7 @@ void get_process(processes * p) {
         // don't forget to deallocate the memery pointed by buf
         char * buf = NULL;
         size_t len = 0;
-        if (-1 == getline(&buf, len, fp)) {
+        if (-1 == getline(&buf, &len, fp)) {
             fprintf(stderr, "Cannot read file %s\n", stat);
             perror(NULL);
             exit(EXIT_FAILURE);
